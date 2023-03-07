@@ -2,28 +2,34 @@ import Debug "mo:base/Debug";
 import Time "mo:base/Time";
 import Float "mo:base/Float";
 
-// actor is like a class
 actor DBank {
   // stable makes the variable persistant (remembers the value even after redeploy)
-  stable var currentValue : Float = 300; // decalre variable
-  // currentValue := 200; // change variable value
+  stable var currentValue : Float = 100;
+  currentValue := 100;
+  Debug.print(debug_show (currentValue));
 
   stable var startTime = Time.now();
+  startTime := Time.now();
   Debug.print(debug_show (startTime));
+
+  let id = 2348923840928349;
+  // Debug.print(debug_show(id));
 
   // update call - by the blockchain - slow
   // public function
   // amount with datatype Float
   public func topUp(amount : Float) {
     currentValue += amount;
-    Debug.print(debug_show (currentValue)); // print
+    Debug.print(debug_show (currentValue));
   };
-  public func withdrawl(amount : Float) {
-    if (amount <= currentValue) {
+
+  public func withdraw(amount : Float) {
+    let tempValue : Float = currentValue - amount;
+    if (tempValue >= 0) {
       currentValue -= amount;
       Debug.print(debug_show (currentValue));
     } else {
-      Debug.print("Withdraw amount too large.");
+      Debug.print("Amount too large, currentValue less than zero.");
     };
   };
 
@@ -40,10 +46,8 @@ actor DBank {
     let currentTime = Time.now();
     let timeElapsedNS = currentTime - startTime; // get time elapsed in nanoseconds
     let timeElapsedS = timeElapsedNS / 1000000000; // get time elapsed in seconds
-
     // formula to calc compount, convert the seconds to a float
-    currentValue := currentValue * (1.01 ** Float.fromInt(timeElapsedS));
-
+    currentValue := currentValue * (1.0002 ** Float.fromInt(timeElapsedS));
     // update the start time
     startTime := currentTime;
   };
