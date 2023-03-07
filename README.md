@@ -7,7 +7,7 @@
 ## 1. Banking App
 
 > Withdraw / Deposit money from a bankaccount with compound interest.<br/>
-> Compound formula: <br/>
+> Compound interest formula: <br/>
 > ![alt Banking App](dbank/compound_interest.svg?raw=true)
 > ![alt Banking App](dbank/screenshot.jpg?raw=true)
 
