@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=McLaren&family=Montserrat&display=swap');
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  background-image: url('./bg.png');
+  color: rgb(32, 32, 32);
+  overflow-x: hidden;
+}
+
+header {
+  background-color: #f5ba13;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  color: #fff;
+  font-family: 'McLaren', cursive;
+  font-weight: 200;
+}
+
+.notes {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.col1,
+.col2,
+.col3 {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  margin: 0px 10px;
+}
+
+.note {
+  font-family: 'Montserrat', sans-serif;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px 20px;
+  width: 200px;
+  margin: 10px 0px;
+  float: left;
+}
+.note h1 {
+  font-family: 'McLaren', cursive;
+  font-size: 1.1em;
+  margin-bottom: 0px;
+}
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.TextInput {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.TextInput .input-box {
+  width: 400px;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 1rem 0;
+}
+.TextInput form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.TextInput form input,
+textarea,
+button {
+  width: 370px;
+  text-decoration: none;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  background-color: transparent;
+  resize: none;
+  padding: 0.5rem;
+}
+
+.TextInput form {
+  position: relative;
+}
+
+.TextInput button {
+  background-color: #f5ba13;
+  color: white;
+  position: absolute;
+  bottom: -40px;
+  right: 15px;
+}
+
+.TextInput button:hover {
+  background-color: #f7c94a;
+}
+
+.note button {
+  color: #f5ba13;
+  text-transform: uppercase;
+}
+
+.note button:hover {
+  color: #f7c94a;
+  cursor: pointer;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
