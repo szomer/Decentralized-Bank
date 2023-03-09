@@ -5,6 +5,7 @@ import Gallery from './Gallery';
 import Home from './Home';
 import CURRENT_USER_ID from '../index';
 import { nft_backend } from '../../../declarations/nft_backend';
+import logo from '../../assets/logo.jpg';
 
 function Header() {
   const [userGallery, setUserGallery] = useState('');
@@ -24,7 +25,7 @@ function Header() {
         <div className='navbar fixed-top navbar-dark navbar-expand-sm'>
           <div className='container'>
             <a className='navbar-brand' href='/'>
-              NFTs
+              <img id='logo' src={logo} alt='' />
             </a>
 
             <button

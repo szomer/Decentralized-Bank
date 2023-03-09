@@ -1,7 +1,7 @@
 :root {
   --bg-color: rgb(27, 27, 27);
   --text-color: rgb(172, 172, 172);
-  --highlight-color: rgb(38, 173, 144);
+  --highlight-color: #33b790;
   --light: #f3f3f3;
   --dark: rgb(42, 42, 42);
 }
@@ -34,13 +34,16 @@ body {
 .header {
   background-color: var(--dark);
 }
-
 .header a {
   text-decoration: none;
   color: var(--text-color);
 }
 .header a:hover {
   color: var(--highlight-color);
+}
+.header #logo {
+  height: 35px;
+  border-radius: 5px;
 }
 
 /* HOME COMPONENT */
@@ -54,7 +57,6 @@ body {
   align-items: center;
   text-align: center;
 }
-
 .home .content {
   height: 100%;
   width: 100%;
@@ -63,7 +65,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .home h2 {
   color: var(--highlight-color);
 }
@@ -73,7 +74,6 @@ body {
   height: 100%;
   padding: 1rem;
 }
-
 .gallery .content {
   height: 100%;
   width: 100%;
