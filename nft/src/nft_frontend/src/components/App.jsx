@@ -1,13 +1,15 @@
 import React from 'react';
-import Item from './Item';
+import Minter from './Minter';
+import Header from './Header';
+import Footer from './Footer';
 
 function App() {
-  const nftId = 'renrk-eyaaa-aaaaa-aaada-cai';
+  // const nftId = 'renrk-eyaaa-aaaaa-aaada-cai';
 
   return (
-    <div id='App'>
-      <h1>Hi</h1>
-      <Item id={nftId} />
+    <div id='app'>
+      <Header />
+      <Footer />
     </div>
   );
 }
