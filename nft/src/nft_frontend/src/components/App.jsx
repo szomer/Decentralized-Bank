@@ -7,8 +7,9 @@ function App() {
   // const nftId = 'renrk-eyaaa-aaaaa-aaada-cai';
 
   return (
-    <div id='app'>
+    <div className='app' style={{ height: '100vh' }}>
       <Header />
+
       <Footer />
     </div>
   );

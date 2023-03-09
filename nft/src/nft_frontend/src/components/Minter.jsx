@@ -30,7 +30,7 @@ function Minter() {
 
   if (nftPrincipal === '') {
     return (
-      <div id='minter'>
+      <div className='minter'>
         <div hidden={loaderHidden} className='loader'>
           <div></div>
           <div></div>

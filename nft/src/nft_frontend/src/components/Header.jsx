@@ -20,8 +20,8 @@ function Header() {
 
   return (
     <BrowserRouter forceRefresh={true}>
-      <div id='header'>
-        <div className='navbar navbar-dark navbar-expand-sm'>
+      <header className='header'>
+        <div className='navbar fixed-top navbar-dark navbar-expand-sm'>
           <div className='container'>
             <a className='navbar-brand' href='/'>
               NFTs
@@ -57,7 +57,7 @@ function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </header>
       <Routes>
         <Route exact path='/' element={<Home />}></Route>
         <Route path='/discover' element={<h1>Discover</h1>}></Route>

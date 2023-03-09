@@ -44,7 +44,7 @@ function Item(props) {
   }, []);
 
   return (
-    <div id='item' className='card bg-dark'>
+    <div className='item card bg-dark'>
       <div className='card-header bg-light'>
         <img className='card-img-top' src={image} />
       </div>

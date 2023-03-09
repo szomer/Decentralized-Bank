@@ -18,7 +18,7 @@ function Gallery(props) {
   }, []);
 
   return (
-    <div id='gallery'>
+    <div className='gallery'>
       <div className='container'>
         <div className='row d-flex justify-content-center'>
           {items ? (
