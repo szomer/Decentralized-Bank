@@ -17,7 +17,23 @@ function Gallery(props) {
     fetchNFTs();
   }, []);
 
-  return <div id='gallery'>{items}</div>;
+  return (
+    <div id='gallery'>
+      <div className='container'>
+        <div className='row d-flex justify-content-center'>
+          {items ? (
+            items.map((item) => {
+              return <div className='col-md-3 m-3'>{item}</div>;
+            })
+          ) : (
+            <div className='col-md-5 m-3'>
+              <p>You did not share any NFTs yet.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Gallery;

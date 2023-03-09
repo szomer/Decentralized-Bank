@@ -21,20 +21,42 @@ function Header() {
   return (
     <BrowserRouter forceRefresh={true}>
       <div id='header'>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/discover'>Discover</Link>
-          </li>
-          <li>
-            <Link to='/minter'>Minter</Link>
-          </li>
-          <li>
-            <Link to='/collection'>Collection</Link>
-          </li>
-        </ul>
+        <div className='navbar navbar-dark navbar-expand-sm'>
+          <div className='container'>
+            <a className='navbar-brand' href='/'>
+              NFTs
+            </a>
+
+            <button
+              className='navbar-toggler'
+              type='button'
+              data-bs-toggle='collapse'
+              data-bs-target='#navbarNav'
+              aria-controls='navbarNav'
+              aria-expanded='false'
+              aria-label='Toggle navigation'
+            >
+              <span className='navbar-toggler-icon'></span>
+            </button>
+
+            <div className='collapse navbar-collapse' id='navbarNav'>
+              <ul className='navbar-nav w-100 justify-content-end me-auto mb-2'>
+                <li className='nav-item p-2'>
+                  <Link to='/'>Home</Link>
+                </li>
+                <li className='nav-item p-2'>
+                  <Link to='/discover'>Discover</Link>
+                </li>
+                <li className='nav-item p-2'>
+                  <Link to='/minter'>Minter</Link>
+                </li>
+                <li className='nav-item p-2'>
+                  <Link to='/collection'>Collection</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <Routes>
         <Route exact path='/' element={<Home />}></Route>

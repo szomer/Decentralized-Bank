@@ -1,3 +1,11 @@
+:root {
+  --bg-color: rgb(27, 27, 27);
+  --text-color: rgb(172, 172, 172);
+  --highlight-color: rgb(38, 173, 144);
+  --light: #f3f3f3;
+  --dark: rgb(54, 54, 54);
+}
+
 html,
 body {
   width: 100%;
@@ -8,8 +16,43 @@ body {
 }
 
 body {
-  background-color: rgb(27, 27, 27);
-  color: rgb(241, 241, 241);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* APP COMPONENT */
+#app {
+}
+
+/* HEADER COMPONENT */
+#header a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+#header a:hover {
+  color: var(--highlight-color);
+}
+
+/* HOME COMPONENT */
+#home {
+}
+
+/* GALLERY COMPONENT */
+#gallery {
+}
+
+/* ITEM COMPONENT */
+#item p,
+#item h2 {
+  text-align: center;
+  color: var(--light);
+}
+/* MINTER COMPONENT */
+#minter {
+}
+
+/* FOOTER COMPONENT */
+#footer {
 }
 
 /* LOADER */
@@ -25,7 +68,7 @@ body {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--light);
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .loader div:nth-child(1) {

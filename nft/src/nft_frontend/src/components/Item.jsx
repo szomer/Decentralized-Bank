@@ -44,14 +44,13 @@ function Item(props) {
   }, []);
 
   return (
-    <div id='item'>
-      <div className=''>
-        <img className='' src={image} />
-        <h2 className=''>
-          {name}
-          <span className=''></span>
-        </h2>
-        <p className=''>Owner: {owner}</p>
+    <div id='item' className='card bg-dark'>
+      <div className='card-header bg-light'>
+        <img className='card-img-top' src={image} />
+      </div>
+      <div className='card-body'>
+        <h2 className='h3 card-title'>{name}</h2>
+        <p className='card-text'>Owner: {owner}</p>
       </div>
     </div>
   );
