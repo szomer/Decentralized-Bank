@@ -46,26 +46,70 @@ body {
 /* HOME COMPONENT */
 .home {
   height: 100%;
+  padding: 1rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   text-align: center;
+}
+
+.home .content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home h2 {
+  color: var(--highlight-color);
 }
 
 /* GALLERY COMPONENT */
 .gallery {
+  height: 100%;
+  padding: 1rem;
+}
+
+.gallery .content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* ITEM COMPONENT */
+.item {
+  width: 300px;
+  height: 300px;
+}
+.item .card {
+  margin: 1rem;
+}
 .item p,
 .item h2 {
   text-align: center;
   color: var(--light);
 }
+
 /* MINTER COMPONENT */
 .minter {
+  height: 100%;
+  padding: 1rem;
+}
+.minter .content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* FOOTER COMPONENT */

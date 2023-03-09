@@ -31,35 +31,43 @@ function Minter() {
   if (nftPrincipal === '') {
     return (
       <div className='minter'>
-        <div hidden={loaderHidden} className='loader'>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div className='title-page'>
+          <h3 className='text-center'>Create NFT</h3>
         </div>
+        <div className='content'>
+          <div hidden={loaderHidden} className='loader'>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
 
-        <h3 className=''>Create NFT</h3>
-        <h6 className=''>Upload Image</h6>
-        <form noValidate='' autoComplete='off'>
-          <input
-            {...register('image', { required: true })}
-            className='form-control'
-            type='file'
-            accept='image/x-png,image/jpeg,image/gif,image/svg+xml,image/webp'
-          />
+          <form noValidate='' autoComplete='off'>
+            <label className='form-label'>Upload Image</label>
+            <input
+              {...register('image', { required: true })}
+              className='form-control mb-3'
+              type='file'
+              accept='image/x-png,image/jpeg,image/gif,image/svg+xml,image/webp'
+            />
 
-          <h6 className=''>Collection Name</h6>
-          <input
-            {...register('name', { required: true })}
-            placeholder='e.g. CryptoDunks'
-            type='text'
-            className='form-control'
-          />
+            <label className='form-label'>Collection Name</label>
+            <input
+              {...register('name', { required: true })}
+              placeholder='e.g. CryptoDunks'
+              type='text'
+              className='form-control mb-3'
+            />
+            <hr />
 
-          <button onClick={handleSubmit(onSubmit)} className=''>
-            Mint NFT
-          </button>
-        </form>
+            <button
+              onClick={handleSubmit(onSubmit)}
+              className='btn btn-light w-100'
+            >
+              Mint NFT
+            </button>
+          </form>
+        </div>
       </div>
     );
   } else {
