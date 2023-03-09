@@ -32,7 +32,7 @@ function Minter() {
     return (
       <div className='minter'>
         <div className='title-page'>
-          <h3 className='text-center'>Create NFT</h3>
+          <h2 className='text-center'>Create NFT</h2>
         </div>
         <div className='content'>
           <div hidden={loaderHidden} className='loader'>
@@ -46,7 +46,7 @@ function Minter() {
             <label className='form-label'>Upload Image</label>
             <input
               {...register('image', { required: true })}
-              className='form-control mb-3'
+              className='form-control mb-3 bg-dark text-light'
               type='file'
               accept='image/x-png,image/jpeg,image/gif,image/svg+xml,image/webp'
             />
@@ -56,13 +56,13 @@ function Minter() {
               {...register('name', { required: true })}
               placeholder='e.g. CryptoDunks'
               type='text'
-              className='form-control mb-3'
+              className='form-control mb-3 bg-dark text-light'
             />
-            <hr />
+            <hr className='my-4' />
 
             <button
               onClick={handleSubmit(onSubmit)}
-              className='btn btn-light w-100'
+              className='btn btn-dark w-100'
             >
               Mint NFT
             </button>

@@ -20,7 +20,7 @@ function Gallery(props) {
   return (
     <div className='gallery'>
       <div className='title-page'>
-        <h3 className='text-center'>Your NFTs</h3>
+        <h2 className='text-center'>Your NFTs</h2>
       </div>
       <div className='content'>
         {items ? (

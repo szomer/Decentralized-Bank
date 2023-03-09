@@ -44,7 +44,7 @@ function Item(props) {
   }, []);
 
   return (
-    <div className='item'>
+    <div className='item mb-3'>
       <div className='card bg-dark'>
         <div className='card-header bg-light'>
           <img className='card-img-top' src={image} />
