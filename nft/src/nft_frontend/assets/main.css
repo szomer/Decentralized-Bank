@@ -25,6 +25,11 @@ body {
   color: var(--highlight-color);
 }
 
+.form-control:focus,
+.input:focus {
+  border-color: var(--highlight-color);
+}
+
 /* AUTH */
 .auth {
   height: 100%;
@@ -120,6 +125,40 @@ body {
 .item .card {
   box-shadow: 5px 5px 15px black;
 }
+.item .card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item .card .card-subtitle {
+  color: var(--highlight-color);
+}
+.item .price-input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.item .price-input button {
+  margin-right: 1rem;
+  padding: 0rem 0.8rem;
+}
+.item .price-input input {
+  margin-right: 2rem;
+  width: 140px;
+}
+
+/* BUTTON COMPONENT */
+.Button {
+  background-color: var(--highlight-color);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  color: var(--light);
+  border-radius: 7px;
+  width: 100%;
+  padding: 0.2rem 1rem;
+}
+.Button:hover {
+  background-color: var(--text-color);
+}
 
 /* MINTER COMPONENT */
 .minter {
@@ -134,9 +173,6 @@ body {
 .minter .btn {
   border: solid 1px var(--highlight-color);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
-}
-.minter .form-control:focus {
-  border-color: var(--highlight-color);
 }
 
 /* FOOTER COMPONENT */

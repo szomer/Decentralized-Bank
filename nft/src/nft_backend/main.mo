@@ -6,10 +6,16 @@ import HashMap "mo:base/HashMap";
 import List "mo:base/List";
 
 actor Main {
+    // Datatype for a listing
+    private type Listing = {
+        itemOwner : Principal;
+        itemPrice : Nat;
+    };
 
-    // Hashmaps for storing all nfts and owners
+    // Hashmaps for storing all nfts, owners, and listings
     var nfts = HashMap.HashMap<Principal, NFTActorClass.NFT>(1, Principal.equal, Principal.hash);
     var owners = HashMap.HashMap<Principal, List.List<Principal>>(1, Principal.equal, Principal.hash);
+    var listings = HashMap.HashMap<Principal, Listing>(1, Principal.equal, Principal.hash);
 
     public shared (msg) func mint(content : [Nat8], name : Text) : async Principal {
         // Get the Principal of the owner of the NFT
@@ -52,6 +58,39 @@ actor Main {
         };
         // Convert to array format and return
         return List.toArray(userNfts);
+    };
+
+    // Add a listing
+    public shared (msg) func listItem(id : Principal, price : Nat) : async Text {
+        // Get the NFT from the HashMap
+        let item : NFTActorClass.NFT = switch (nfts.get(id)) {
+            case null return "NFT Does not exist.";
+            case (?result) result;
+        };
+        // Get the owner of item
+        let owner = await item.getOwner();
+        // Check if owner principal is equal
+        if (Principal.equal(owner, msg.caller)) {
+            // Create a new listing
+            let newListing : Listing = {
+                itemOwner = owner;
+                itemPrice = price;
+            };
+            // Save the new listing in the listings hashmap
+            listings.put(id, newListing);
+            return "Success!";
+        };
+        return "You don't own the NFT.";
+    };
+
+    // Return the prinicpal id of this canister
+    public query func getNftBackendCanisterId() : async Principal {
+        return Principal.fromActor(Main);
+    };
+
+    public query func isListed(id : Principal) : async Bool {
+        if (listings.get(id) == null) return false;
+        return true;
     };
 
 };

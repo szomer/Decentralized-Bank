@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import Minter from './Minter';
 import Gallery from './Gallery';
 import Home from './Home';
@@ -19,7 +19,7 @@ function Header(props) {
   }, []);
 
   return (
-    <BrowserRouter forceRefresh={true}>
+    <div>
       <header className='header'>
         <div className='navbar fixed-top navbar-dark navbar-expand-sm'>
           <div className='container'>
@@ -59,12 +59,12 @@ function Header(props) {
         </div>
       </header>
       <Routes>
-        <Route exact path='/' element={<Home />}></Route>
+        <Route path='*' element={<Home />}></Route>
         <Route path='/discover' element={<h1>Discover</h1>}></Route>
         <Route path='/minter' element={<Minter />}></Route>
         <Route path='/collection' element={userGallery}></Route>
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 

@@ -18,7 +18,6 @@ function Minter() {
     const imageArray = await image.arrayBuffer();
     const byteArray = [...new Uint8Array(imageArray)];
     const nftId = await nft_backend.mint(byteArray, name);
-    console.log(nftId.toText(), 'nft id');
     setNftPrincipal(nftId);
     // Hide loader
     setLoaderHidden(true);
@@ -72,10 +71,12 @@ function Minter() {
     );
   } else {
     return (
-      <div id='minter'>
-        <h3 className=''>Minted!</h3>
-        <div className=''>
-          <Item id={nftPrincipal.toText()} />
+      <div className='minter'>
+        <div className='title-page'>
+          <h2 className='text-center'>NFT Minted !</h2>
+        </div>
+        <div className='content d-flex justify-content-center'>
+          <Item key={nftPrincipal.toText()} id={nftPrincipal} />
         </div>
       </div>
     );

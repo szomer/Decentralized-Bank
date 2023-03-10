@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Auth from './Auth';
+import App from './components/App';
 import { AuthClient } from '@dfinity/auth-client';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -42,4 +43,9 @@ async function handleAuth(authClient) {
   );
 }
 
-init();
+// init();
+root.render(
+  <React.StrictMode>
+    <Auth />
+  </React.StrictMode>
+);
