@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Actor, HttpAgent } from '@dfinity/agent';
 import { idlFactory } from '../../../declarations/nft';
+import { idlFactory as tokenIdlFactory } from '../../../declarations/token_backend';
 import Button from './Button';
 import { nft_backend } from '../../../declarations/nft_backend';
-import { USER_LOGIN } from './App';
 import Pricelabel from './Pricelabel';
 import { Principal } from '@dfinity/principal';
 
@@ -76,8 +76,20 @@ function Item(props) {
     }
   }
 
-  function handleBuyNFT() {
+  // Buy NFT
+  async function handleBuyNFT() {
     console.log('buy');
+
+    // get ahold of the token actor
+    const tokenActor = await Actor.createActor(tokenIdlFactory, {
+      agent,
+      canisterId: Principal.fromText('q4eej-kyaaa-aaaaa-aaaha-cai'),
+    });
+
+    // Transfer the tokens to the seller
+    const sellerId = await nft_backend.getOriginalOwner(id);
+    const itemPrice = await nft_backend.getListedNftPrice(id);
+    await tokenActor.transfer(sellerId, itemPrice);
   }
 
   // On Sell button clicked
