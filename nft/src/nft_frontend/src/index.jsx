@@ -1,16 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/App';
-import { Principal } from '@dfinity/principal';
-// import { AuthClient } from '@dfinity/auth-client';
-
-const CURRENT_USER_ID = Principal.fromText('2vxsx-fae');
-export default CURRENT_USER_ID;
+import Auth from './Auth';
+import { AuthClient } from '@dfinity/auth-client';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const init = async () => {
+  // new authclient object
+  const authClient = await AuthClient.create();
+
+  if (await authClient.isAuthenticated()) {
+    handleAuth(authClient);
+  } else {
+    root.render(
+      <React.StrictMode>
+        <Auth />
+      </React.StrictMode>
+    );
+
+    // log in with identity, when successfull render page
+    await authClient.login({
+      identityProvider: 'https://identity.ic0.app/#authorize',
+      onSuccess: () => {
+        handleAuth(authClient);
+      },
+    });
+  }
+};
+
+async function handleAuth(authClient) {
+  const userPrincipal = await authClient
+    .getIdentity()
+    .getPrincipal()
+    .toString();
+  console.log(userPrincipal);
+
+  root.render(
+    <React.StrictMode>
+      <App loggedIn={userPrincipal} />
+    </React.StrictMode>
+  );
+}
+
+init();

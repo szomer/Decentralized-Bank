@@ -3,12 +3,12 @@ import Minter from './Minter';
 import Header from './Header';
 import Footer from './Footer';
 
-function App() {
+function App(props) {
   // const nftId = 'renrk-eyaaa-aaaaa-aaada-cai';
 
   return (
     <div className='app' style={{ height: '100vh' }}>
-      <Header />
+      <Header loggedIn={props.loggedIn} />
 
       <Footer />
     </div>

@@ -3,15 +3,14 @@ import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import Minter from './Minter';
 import Gallery from './Gallery';
 import Home from './Home';
-import CURRENT_USER_ID from '../index';
 import { nft_backend } from '../../../declarations/nft_backend';
 import logo from '../../assets/logo.jpg';
 
-function Header() {
+function Header(props) {
   const [userGallery, setUserGallery] = useState('');
 
   async function getNFTs() {
-    const userNTFsIds = await nft_backend.getOwnerNfts(CURRENT_USER_ID);
+    const userNTFsIds = await nft_backend.getOwnerNfts(props.loggedIn);
     setUserGallery(<Gallery ids={userNTFsIds} />);
   }
 
