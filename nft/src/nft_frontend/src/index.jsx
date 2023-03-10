@@ -41,10 +41,12 @@ async function handleAuth(authClient) {
     </React.StrictMode>
   );
 }
-// Principal.fromText('2vxsx-fae')
+
+// Log in with Internet identity:
 // init();
 
-// qfbba-s76b2-foauk-2lrty-doae4-pis42-3ffgu-pxvc7-auufz-gqhuu-lqe
+// Testing
+// Principal.fromText('2vxsx-fae')
 testing();
 async function testing() {
   // const identity = await Ed25519KeyIdentity.generate();

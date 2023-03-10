@@ -7,6 +7,9 @@ import List "mo:base/List";
 import Iter "mo:base/Iter";
 
 actor Main {
+
+    Debug.print("");
+
     // Datatype for a listing
     private type Listing = {
         itemOwner : Principal;
@@ -125,5 +128,6 @@ actor Main {
         };
         // return the price of listing
         return listing.itemPrice;
+
     };
 };
