@@ -3,13 +3,20 @@ import Item from './Item';
 import { Principal } from '@dfinity/principal';
 
 function Gallery(props) {
-  const [items, setItems] = useState('');
+  const [items, setItems] = useState();
 
   function fetchNFTs() {
     if (props.ids === undefined) return;
 
     setItems(
-      props.ids.map((nftId) => <Item key={nftId.toText()} id={nftId} />)
+      props.ids.map((nftId) => (
+        <Item
+          key={nftId.toText()}
+          id={nftId}
+          loggedIn={props.loggedIn}
+          role={props.role}
+        />
+      ))
     );
   }
 
@@ -20,7 +27,7 @@ function Gallery(props) {
   return (
     <div className='gallery'>
       <div className='title-page'>
-        <h2 className='text-center'>My NFTs</h2>
+        <h2 className='text-center'>{props.title}</h2>
       </div>
       <div className='content'>
         {items ? (
@@ -28,8 +35,8 @@ function Gallery(props) {
             return item;
           })
         ) : (
-          <div className='m-3'>
-            <p>You did not share any NFTs yet.</p>
+          <div className='m-3 text-center'>
+            <p className='text-center'>You did not share any NFTs yet.</p>
           </div>
         )}
       </div>

@@ -114,7 +114,7 @@ body {
 
 /* ITEM COMPONENT */
 .item {
-  width: 300px;
+  width: 330px;
   padding: 1rem;
 }
 .item p,
@@ -145,6 +145,15 @@ body {
 .item .price-input input {
   margin-right: 2rem;
   width: 140px;
+}
+
+/* PRICE LABEL COMPONENT */
+.Pricelabel {
+  color: var(--highlight-color);
+  font-size: 0.9rem;
+  border: 1px solid var(--highlight-color);
+  padding: 0rem 0.4rem;
+  border-radius: 2px;
 }
 
 /* BUTTON COMPONENT */

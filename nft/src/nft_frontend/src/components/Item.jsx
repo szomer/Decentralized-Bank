@@ -3,6 +3,9 @@ import { Actor, HttpAgent } from '@dfinity/agent';
 import { idlFactory } from '../../../declarations/nft';
 import Button from './Button';
 import { nft_backend } from '../../../declarations/nft_backend';
+import { USER_LOGIN } from './App';
+import Pricelabel from './Pricelabel';
+import { Principal } from '@dfinity/principal';
 
 function Item(props) {
   // REACT State
@@ -14,12 +17,14 @@ function Item(props) {
   const [msg, setMsg] = useState();
   const [loaderHidden, setLoaderHidden] = useState(true);
   const [blur, setBlur] = useState();
-  const [sellStatus, setSellStatus] = useState();
+  const [sellStatus, setSellStatus] = useState('');
+  const [sellPriceLabel, setsellPriceLabel] = useState();
 
   var price;
 
   // ID of NTF
   const id = props.id;
+  const loggedIn = props.loggedIn;
 
   const localHost = 'http://localhost:8080/';
   const agent = new HttpAgent({ host: localHost });
@@ -47,15 +52,32 @@ function Item(props) {
     setName(itemName);
     setOwner(itemOwner.toText()); // Convert Principal to Text format
     setImage(imageContent);
-    const nftIsListed = await nft_backend.isListed(id);
-    if (nftIsListed) {
-      setOwner('NFT Market Place');
-      setBlur({ filter: 'grayscale(100%)' });
-      setSellStatus(<h3 className='card-subtitle mb-2 lead'>Listed</h3>);
-    } else {
-      // Set the button for the NFT
-      setButton(<Button handleClick={handleSellNFT} text={'Sell'} />);
+
+    if (props.role == 'collection') {
+      const nftIsListed = await nft_backend.isListed(id);
+      if (nftIsListed) {
+        setOwner('NFT Market Place');
+        setBlur({ filter: 'grayscale(100%)' });
+        setSellStatus(<h3 className='card-subtitle mb-2 lead'>Listed</h3>);
+      } else {
+        // Set the button for the NFT
+        setButton(<Button handleClick={handleSellNFT} text={'Sell'} />);
+      }
+    } else if (props.role == 'discover') {
+      // Get the original Id of the owner and compare
+      const originalOwner = await nft_backend.getOriginalOwner(id);
+      if (originalOwner.toText() !== loggedIn.toText()) {
+        // Display button if youre not the owner of NFT
+        setButton(<Button handleClick={handleBuyNFT} text={'Buy'} />);
+      }
+      // Get the price of the listed NFT
+      const price = await nft_backend.getListedNftPrice(id);
+      setsellPriceLabel(<Pricelabel sellPrice={price.toString()} />);
     }
+  }
+
+  function handleBuyNFT() {
+    console.log('buy');
   }
 
   // On Sell button clicked
@@ -99,10 +121,8 @@ function Item(props) {
     if (listingResult == 'Success!') {
       // Get the id of the nft_backend canister id
       const backendID = await nft_backend.getNftBackendCanisterId();
-      console.log(NFTActor);
       // Transfer the NFT ownership to the nft_backend canister id owner
       const transferResult = await NFTActor.transferOwnership(backendID);
-      console.log(transferResult);
       if (transferResult == 'Success!') {
         // Show feedback
         setOwner('NFT Market Place');
@@ -131,7 +151,7 @@ function Item(props) {
     <div className='item mb-3'>
       <div className='card bg-dark'>
         <div className='card-header bg-light'>
-          <img className='card-img-top' src={image} style={blur} />
+          <img className='card-img-top p-3' src={image} style={blur} />
         </div>
         <div className='card-body'>
           <div hidden={loaderHidden} className='loader'>
@@ -140,9 +160,10 @@ function Item(props) {
             <div></div>
             <div></div>
           </div>
-          <h2 className='h3 card-title'>{name}</h2>
-          {sellStatus}
+          {sellPriceLabel}
+          <h2 className='h4 card-title'>{name}</h2>
           <p className='card-text'>Owner: {owner}</p>
+          {sellStatus}
           {priceInput}
           {msg}
           {button}

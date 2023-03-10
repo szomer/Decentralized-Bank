@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import Minter from './Minter';
 import Gallery from './Gallery';
 import Home from './Home';
@@ -7,11 +7,31 @@ import { nft_backend } from '../../../declarations/nft_backend';
 import logo from '../../assets/logo.jpg';
 
 function Header(props) {
-  const [userGallery, setUserGallery] = useState('');
+  const [userGallery, setUserGallery] = useState();
+  const [listingGallery, setListingGallery] = useState();
 
+  // Fetch NFTs
   async function getNFTs() {
+    // Owner NFTS
     const userNTFsIds = await nft_backend.getOwnerNfts(props.loggedIn);
-    setUserGallery(<Gallery ids={userNTFsIds} />);
+    setUserGallery(
+      <Gallery
+        title={'My NFTs'}
+        ids={userNTFsIds}
+        loggedIn={props.loggedIn}
+        role='collection'
+      />
+    );
+    // All Listing NFTS
+    const listedNftIds = await nft_backend.getListedNFTs();
+    setListingGallery(
+      <Gallery
+        title={'Discover'}
+        ids={listedNftIds}
+        loggedIn={props.loggedIn}
+        role='discover'
+      />
+    );
   }
 
   useEffect(() => {
@@ -19,7 +39,7 @@ function Header(props) {
   }, []);
 
   return (
-    <div>
+    <BrowserRouter forceRefresh={true}>
       <header className='header'>
         <div className='navbar fixed-top navbar-dark navbar-expand-sm'>
           <div className='container'>
@@ -45,13 +65,17 @@ function Header(props) {
                   <Link to='/'>Home</Link>
                 </li>
                 <li className='nav-item p-2'>
-                  <Link to='/discover'>Discover</Link>
+                  <Link reloadDocument to='/discover'>
+                    Discover
+                  </Link>
                 </li>
                 <li className='nav-item p-2'>
                   <Link to='/minter'>Minter</Link>
                 </li>
                 <li className='nav-item p-2'>
-                  <Link to='/collection'>Collection</Link>
+                  <Link reloadDocument to='/collection'>
+                    My Collection
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -59,12 +83,12 @@ function Header(props) {
         </div>
       </header>
       <Routes>
-        <Route path='*' element={<Home />}></Route>
-        <Route path='/discover' element={<h1>Discover</h1>}></Route>
+        <Route exact path='/' element={<Home />}></Route>
+        <Route path='/discover' element={listingGallery}></Route>
         <Route path='/minter' element={<Minter />}></Route>
         <Route path='/collection' element={userGallery}></Route>
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 

@@ -17,6 +17,7 @@ function Minter() {
     // Convert the image to bytearray
     const imageArray = await image.arrayBuffer();
     const byteArray = [...new Uint8Array(imageArray)];
+    console.log(byteArray);
     const nftId = await nft_backend.mint(byteArray, name);
     setNftPrincipal(nftId);
     // Hide loader
