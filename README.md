@@ -1,7 +1,7 @@
 # Decentralized Apps
 
-- Web3.0 fontend/backend applications
-- The back-end witten in Motoko programming language
+- [Web3.0](https://ethereum.org/en/web3/) fontend/backend applications
+- The back-end witten in [Motoko](https://internetcomputer.org/docs/current/motoko/main/motoko) programming language
 - Running on DFINITY'S [The Internet Computer](https://internetcomputer.org/what-is-the-ic) (ICP) general-purpose block-chain.
 
 ## 1. NFT Market Place
@@ -43,7 +43,8 @@ Withdraw / Deposit money from a bankaccount.
 
 - Compound interest formula:
 
-> ![alt Banking App](dbank/compound_interest.svg?raw=true) <br/> > ![alt Banking App](dbank/screenshot.jpg?raw=true)
+> ![alt Banking App](dbank/compound_interest.svg?raw=true) <br/> 
+> ![alt Banking App](dbank/screenshot.jpg?raw=true)
 
 ## 4. Keeping Notes App
 
